@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <title>Snake Game – Speed Increases</title>
+    
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        canvas {
+            background: #111;
+            display: block;
+            border: 2px solid #4caf50;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="game" width="600" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById("game");
+        const ctx = canvas.getContext("2d");
+
+        const box = 20; // size of each block
+        let snake = [{ x: 10 * box, y: 10 * box }];
+        let dir = "RIGHT";
+        let food = {
+            x: Math.floor(Math.random() * (canvas.width / box)) * box,
+            y: Math.floor(Math.random() * (canvas.height / box)) * box
+        };
+        let score = 0;
+
+        let speed = 200; // milliseconds between moves
+        let interval = null;
+
+        // ---------------- CONTROL ----------------
+        document.addEventListener("keydown", e => {
+            if (e.key === "ArrowUp" && dir != "DOWN") dir = "UP";
+            if (e.key === "ArrowDown" && dir != "UP") dir = "DOWN";
+            if (e.key === "ArrowLeft" && dir != "RIGHT") dir = "LEFT";
+            if (e.key === "ArrowRight" && dir != "LEFT") dir = "RIGHT";
+        });
+
+        // ---------------- GAME LOOP ----------------
+        function draw() {
+            ctx.fillStyle = "#111";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw food
+            ctx.fillStyle = "red";
+            ctx.fillRect(food.x, food.y, box, box);
+
+            // Move head
+            let head = { x: snake[0].x, y: snake[0].y };
+            if (dir === "UP") head.y -= box;
+            if (dir === "DOWN") head.y += box;
+            if (dir === "LEFT") head.x -= box;
+            if (dir === "RIGHT") head.x += box;
+
+            // Check collision with walls
+            if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) {
+                gameOver();
+                return;
+            }
+
+            // Check collision with self
+            for (let i = 0; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
+                    gameOver();
+                    return;
+                }
+            }
+
+            // Snake eats food
+            if (head.x === food.x && head.y === food.y) {
+                score++;
+                // increase speed gradually
+                speed = Math.max(50, speed - 5); // min speed = 50ms
+                clearInterval(interval);
+                interval = setInterval(draw, speed);
+
+                food = {
+                    x: Math.floor(Math.random() * (canvas.width / box)) * box,
+                    y: Math.floor(Math.random() * (canvas.height / box)) * box
+                };
+                // Do not remove tail → snake grows
+            } else {
+                snake.pop(); // remove tail
+            }
+
+            snake.unshift(head); // add new head
+
+            // Draw snake
+            ctx.fillStyle = "#4caf50";
+            snake.forEach((s, i) => {
+                ctx.fillRect(s.x, s.y, box, box);
+                if (i === 0) {
+                    ctx.fillStyle = "#80e27e"; // head color
+                    ctx.fillRect(s.x, s.y, box, box);
+                    ctx.fillStyle = "#4caf50";
+                }
+            });
+
+            // Draw score
+            ctx.fillStyle = "white";
+            ctx.font = "20px Arial";
+            ctx.fillText("Score: " + score, 10, 20);
+        }
+
+        // ---------------- GAME OVER ----------------
+        function gameOver() {
+            alert("Game Over! Score: " + score);
+            snake = [{ x: 10 * box, y: 10 * box }];
+            dir = "RIGHT";
+            score = 0;
+            speed = 200;
+            clearInterval(interval);
+            interval = setInterval(draw, speed);
+        }
+
+        // Start game
+        interval = setInterval(draw, speed);
+    </script>
+</body>
+
+</html>
