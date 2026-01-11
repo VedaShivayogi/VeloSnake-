@@ -2,7 +2,7 @@
 
 **VeloSnake** is an exciting, fast-paced Snake game where the snake speeds up as it eats food! Challenge yourself to get the highest score while avoiding walls and your own tail.  
 
----
+
 
 ## 🕹️ Features
 
@@ -12,7 +12,7 @@
 - Real-time score tracking  
 - Responsive design, playable in the browser  
 
----
+
 
 ## 🎮 Controls
 
@@ -23,17 +23,16 @@
 | Arrow Left     | Move Left        |
 | Arrow Right    | Move Right       |
 
----
+
 
 ## 📸 Screenshot
 
-![VeloSnake Screenshot](screenshot.png)  
 *The green snake moving on a dark background, chasing the red food.*
 
----
+
 
 ## ⚡ How to Play
 
 1. Clone or download this repository:  
 ```bash
-git clone https://github.com/yourusername/VeloSnake.git
+git clone https://github.com/VedaShivayogi/VeloSnake-
