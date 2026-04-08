@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Image Editor</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(120deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        img {
+            max-width: 350px;
+            margin-top: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05) rotate(1deg);
+        }
+
+        .controls {
+            margin-top: 15px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Interactive Image Filter Project</h2>
+
+    <div class="container">
+        <input type="file" id="upload" accept="image/*"><br>
+
+        <img id="preview" />
+
+        <div class="controls">
+            <label>Blur
+                <input type="range" min="0" max="10" value="0" oninput="apply()">
+            </label>
+
+            <label>Brightness
+                <input type="range" min="50" max="150" value="100" oninput="apply()">
+            </label>
+
+            <label>Contrast
+                <input type="range" min="50" max="150" value="100" oninput="apply()">
+            </label>
+
+            <label>Grayscale
+                <input type="range" min="0" max="100" value="0" oninput="apply()">
+            </label>
+        </div>
+
+        <button onclick="download()">Download Image</button>
+    </div>
+
+    <script>
+        const upload = document.getElementById("upload");
+        const img = document.getElementById("preview");
+        const sliders = document.querySelectorAll("input[type=range]");
+
+        upload.onchange = () => {
+            img.src = URL.createObjectURL(upload.files[0]);
+        };
+
+        function apply() {
+            img.style.filter =
+                `blur(${sliders[0].value}px)
+     brightness(${sliders[1].value}%)
+     contrast(${sliders[2].value}%)
+     grayscale(${sliders[3].value}%)`;
+        }
+
+        function download() {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+
+            ctx.filter = img.style.filter;
+            ctx.drawImage(img, 0, 0);
+
+            const link = document.createElement("a");
+            link.download = "edited_image.png";
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+
+</body>
+
+</html>
