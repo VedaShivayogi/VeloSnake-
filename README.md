@@ -24,7 +24,7 @@ This project demonstrates a responsive Snake game experience with intuitive cont
 
 Open the demo directly in your browser:
 
-- [Open demo in browser](velo.html)
+- [Open demo in browser](https://vedashivayogi.github.io/VeloSnake-/velo.html)
 
 You can also view the demo screenshots:
 
