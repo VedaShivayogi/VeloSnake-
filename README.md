@@ -1,78 +1,58 @@
-# Interactive Image Filter
+# Snake Game — Speed Increases
 
-A professional web-based image editing tool that allows users to apply real-time filters to images using HTML5 Canvas and CSS filters.
+A polished browser-based Snake game built with HTML, CSS, and JavaScript.
 
-## Features
+## Overview
 
-- **Upload Images**: Support for various image formats
-- **Real-time Filters**: Apply multiple filters simultaneously
-- **Filter Controls**:
-  - Blur (0-10px)
-  - Brightness (50-150%)
-  - Contrast (50-150%)
-  - Grayscale (0-100%)
-- **Download Edited Images**: Save your filtered images as PNG files
-- **Responsive Design**: Clean, modern UI with hover effects
+This project demonstrates a responsive Snake game experience with intuitive controls, score tracking, and progressively increasing speed. It is implemented as a single HTML file and runs in any modern web browser without dependencies.
+
+## Highlights
+
+- Classic Snake gameplay with a clean visual style
+- Automatically grows the snake when food is eaten
+- Score display updates in real time
+- Game speed increases each time the snake eats food
+- Collision detection for walls and the snake itself
+- Automatic restart after game over
+
+## Files
+
+- `velo.html` — main game file containing the full HTML, CSS, and JavaScript implementation
+- `output/` — directory containing demo screenshots for the game
 
 ## Demo
 
-[View Live Demo](https://your-demo-link-here.com) _(Replace with actual demo URL)_
+Open the demo directly in your browser:
 
-## Screenshots
+- [Open demo in browser](velo.html)
 
-### Original Image
+You can also view the demo screenshots:
 
-![Input Image](output/input.png)
+- `output/starting.png`
+- `output/ending.png`
 
-### Filtered Image
+![Snake game demo screenshot](output/starting.png)
 
-![Output Image](output/output.png)
+![Snake game demo screenshot](output/ending.png)
 
-## How to Use
+## How to Run
 
-1. Open `filter_img.html` in your web browser
-2. Click "Choose File" to upload an image
-3. Adjust the filter sliders to apply effects:
-   - **Blur**: Adds blur effect
-   - **Brightness**: Controls image brightness
-   - **Contrast**: Adjusts image contrast
-   - **Grayscale**: Converts to black and white
-4. Click "Download Image" to save your edited image
+1. Open `velo.html` in a browser such as Chrome, Edge, or Firefox.
+2. Use the arrow keys to guide the snake.
+3. Consume the red food blocks to increase your score and speed.
 
-## Technologies Used
+## Controls
 
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- HTML5 Canvas API
+- `ArrowUp` — move up
+- `ArrowDown` — move down
+- `ArrowLeft` — move left
+- `ArrowRight` — move right
 
-## Browser Support
+## Notes
 
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
-
-## Installation
-
-No installation required. Simply open the `filter_img.html` file in any modern web browser.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+- Speed increases gradually as the score rises, increasing the challenge.
+- The game resets automatically after a collision.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Author
-
-[Veda] - [vedaram2002@example.com]
-
----
-
-_Built with passion for web development and image processing._
+This project is provided for learning, demonstration, and customization.
