@@ -1,4 +1,4 @@
-# Snake Game — Speed Increases
+# Snake Game — Speed Increases.
 
 A polished browser-based Snake game built with HTML, CSS, and JavaScript.
 
